@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FKNLABS | Portfolio & Research</title>
+<style>
+/* --- Reset & Body --- */
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Lato', sans-serif;}
+body {background:#1C1C1C;color:#fff;line-height:1.6;}
+a {text-decoration:none;color:inherit;}
+img {max-width:100%;border-radius:10px;}
+
+/* --- Navbar --- */
+nav {display:flex;justify-content:space-between;align-items:center;padding:20px 50px;background:#000;position:sticky;top:0;z-index:100;}
+nav .logo {font-family:'Playfair Display', serif;font-size:28px;color:#D4AF37;}
+nav ul {list-style:none;display:flex;}
+nav ul li {margin-left:30px;}
+nav ul li a {font-weight:bold;transition:.3s;}
+nav ul li a:hover {color:#D4AF37;}
+
+/* --- Hero --- */
+.hero {display:flex;flex-direction:column;justify-content:center;align-items:center;height:90vh;text-align:center;background:url('https://images.unsplash.com/photo-1565372914081-b8c7d10200d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5NDR8MHwxfHJhbmRvbXx8fHx8fHx8MTY5NDE0NDM4OA&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center/cover;}
+.hero h1 {font-family:'Playfair Display', serif;font-size:60px;color:#D4AF37;}
+.hero p {font-size:24px;margin:20px 0;}
+.btn-primary {padding:12px 30px;background:#D4AF37;color:#000;font-weight:bold;border-radius:5px;transition:.3s;}
+.btn-primary:hover {background:#b6932d;}
+
+/* --- Section Headings --- */
+section h2 {font-family:'Playfair Display', serif;font-size:36px;margin-bottom:20px;color:#D4AF37;text-align:center;margin-top:50px;}
+
+/* --- About --- */
+.about {padding:50px 20px;text-align:center;max-width:1000px;margin:0 auto;}
+.about p {font-size:18px;margin-top:20px;}
+
+/* --- Highlights / Portfolio / Research --- */
+.grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;padding:50px;}
+.card {background:#333;padding:20px;border-radius:10px;transition:.3s;}
+.card:hover {background:#444;}
+.card h3 {font-family:'Playfair Display', serif;color:#D4AF37;margin-bottom:10px;}
+
+/* --- Open Source Models --- */
+.models .card a {display:block;margin-top:10px;padding:8px 12px;background:#D4AF37;color:#000;text-align:center;border-radius:5px;transition:.3s;}
+.models .card a:hover {background:#b6932d;color:#fff;}
+
+/* --- Paper Section --- */
+.paper {padding:50px 20px;max-width:1000px;margin:0 auto;background:#222;border-radius:10px;}
+.paper h3 {color:#D4AF37;margin-bottom:15px;}
+.paper p, .paper ul {margin-bottom:15px;font-size:16px;line-height:1.5;}
+.paper ul li {margin-left:20px;list-style:disc;}
+
+/* --- Contact --- */
+.contact {padding:50px 20px;text-align:center;}
+.contact form {display:flex;flex-direction:column;max-width:500px;margin:0 auto;}
+.contact input, .contact textarea {margin:10px 0;padding:12px;border-radius:5px;border:none;}
+.contact button {padding:12px;background:#D4AF37;color:#000;font-weight:bold;border-radius:5px;transition:.3s;cursor:pointer;}
+.contact button:hover {background:#b6932d;}
+
+/* --- Footer --- */
+footer {background:#000;padding:30px;text-align:center;margin-top:50px;}
+footer .social a {margin:0 10px;color:#D4AF37;}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo">FKNLABS</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#models">Open Source</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <h1>FKNLABS</h1>
+  <p>Research. Models. Innovation.</p>
+  <a href="#portfolio" class="btn-primary">View My Work</a>
+</header>
+
+<!-- About -->
+<section id="about" class="about">
+  <h2>About Me</h2>
+  <p>Hi, I’m FK — a Quant Trader, Financial Engineer in training, and ML enthusiast.  
+  I specialize in macroeconomic trends and trading models, with my portfolio achieving a 33% annual return in 2024 and 20% YTD.  
+  I’ve built advanced ML models, Monte Carlo simulations, neural networks, and finance-driven algorithms.  
+  My goal is to start Africa’s first research-driven elite hedge fund.</p>
+</section>
+
+<!-- Portfolio -->
+<section id="portfolio">
+  <h2>Portfolio</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Monte Carlo Forex Simulator</h3>
+      <p>Python-based simulation of multiple currency pairs forecasting price distributions over 5–10 min intervals using historical data and correlations.</p>
+    </div>
+    <div class="card">
+      <h3>Deep Learning Price Predictor</h3>
+      <p>Neural network predicting short-term price movements based on technical indicators, sentiment, and macroeconomic inputs.</p>
+    </div>
+    <div class="card">
+      <h3>Financial Engineering Models</h3>
+      <p>Advanced derivatives pricing, portfolio optimization, and risk management models using Python, NumPy, and ML techniques.</p>
+    </div>
+    <div class="card">
+      <h3>Macro Economic Dashboard</h3>
+      <p>Real-time data-driven insights on NFP, CPI, PPI, and other economic indicators affecting African and global markets.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Research & Paper -->
+<section id="research">
+  <h2>Research</h2>
+  <div class="paper">
+    <h3>The Skyscraper Effect — Impact on Financial Markets</h3>
+    <p>The Skyscraper Effect hypothesizes that record-breaking infrastructure projects, particularly skyscrapers, can act as economic and psychological signals affecting market behavior.</p>
+    <p><strong>Key Findings & Examples:</strong></p>
+    <ul>
+      <li>Historical correlation: Cities with record-breaking skyscrapers often experience short-term stock market volatility reflecting investor sentiment and capital allocation.</li>
+      <li>Psychological impact: Iconic buildings can influence investor confidence and local economic optimism.</li>
+      <li>Case Study — Burj Khalifa (Dubai): The construction coincided with increased speculative investment inflows into local real estate and stock markets.</li>
+      <li>Case Study — Shanghai Tower: Market data indicated increased domestic and foreign investment interest post-completion.</li>
+    </ul>
+    <p>This research highlights how physical mega-projects can signal economic strength, influencing trading strategies and macroeconomic models. Future work involves integrating these signals into predictive ML models for market behavior.</p>
+    <a href="#" style="color:#D4AF37;text-decoration:underline;">Download Full Paper (PDF)</a>
+  </div>
+</section>
+
+<!-- Open Source Models -->
+<section id="models">
+  <h2>Open Source Models</h2>
+  <div class="grid models">
+    <div class="card">
+      <h3>Monte Carlo Forex Simulator</h3>
+      <a href="https://github.com/" target="_blank">View on GitHub</a>
+    </div>
+    <div class="card">
+      <h3>Deep Learning Price Predictor</h3>
+      <a href="https://github.com/" target="_blank">View on GitHub</a>
+    </div>
+    <div class="card">
+      <h3>Macro Dashboard</h3>
+      <a href="https://github.com/" target="_blank">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact">
+  <h2>Contact</h2>
+  <form>
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Email" required>
+    <textarea placeholder="Message" rows="5" required></textarea>
+    <a href="https://wa.me/254769043920?text=Hello%20FKNLABS!" target="_blank">
+    <button>Message on WhatsApp</button>
+    </a>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 FKNLABS | Designed by FK</p>
+  <div class="social">
+    <a href="https://github.com/franciskamande-ai/">GitHub</a>
+    <a href="https://linkedin.com/">LinkedIn</a>
+  </div>
+</footer>
+
+</body>
+</html>
