@@ -11,69 +11,12 @@ This repository contains various financial models and research implementations a
 - **Monte Carlo Simulations** - Option pricing, risk analysis, and stochastic modeling
 - **Research Papers** - Implementations of academic papers and original research
 
-## 🏗️ Project Structure
-models/
-├── 📈 trading_models/
-│ ├── technical_analysis/
-│ │ ├── moving_average_crossover_backtest.py
-│ │ ├── rsi_momentum_strategy.py
-│ │ └── bollinger_bands_mean_reversion.py
-│ ├── machine_learning/
-│ │ ├── lstm_price_prediction.py
-│ │ ├── random_forest_portfolio_optimization.py
-│ │ └── reinforcement_learning_trading/
-│ └── statistical_arbitrage/
-│ ├── pairs_trading.py
-│ └── mean_reversion_strategies.py
-│
-├── ⚙️ financial_engineering/
-│ ├── option_pricing/
-│ │ ├── black_scholes_merton.py
-│ │ ├── binomial_options.py
-│ │ └── monte_carlo_options.py
-│ ├── risk_management/
-│ │ ├── var_calculations.py
-│ │ ├── portfolio_optimization.py
-│ │ └── garch_volatility.py
-│ └── fixed_income/
-│ ├── yield_curve_models.py
-│ └── bond_pricing.py
-│
-├── 🎲 monte_carlo/
-│ ├── option_pricing/
-│ ├── risk_simulation/
-│ ├── portfolio_simulation/
-│ └── exotic_derivatives/
-│
-├── 📚 research_papers/
-│ ├── implemented_papers/
-│ │ ├── black_litterman_1992/
-│ │ ├── fama_french_1992/
-│ │ └── almgren_chriss_2000/
-│ └── original_research/
-│ ├── market_microstructure/
-│ └── alternative_data/
-│
-├── 📊 data_handlers/
-│ ├── market_data.py
-│ ├── alternative_data.py
-│ └── data_preprocessing.py
-│
-├── 📈 visualization/
-│ ├── strategy_performance.py
-│ ├── risk_dashboards.py
-│ └── interactive_charts.py
-│
-└── utils/
-├── performance_metrics.py
-├── backtesting_framework.py
-└── risk_calculations.py
 
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-
+```bash
 # Core dependencies
 pip install numpy pandas matplotlib seaborn scipy
 
@@ -88,6 +31,7 @@ pip install zipline-reloaded backtrader quantlib riskfolio-lib
 
 # Optional: for advanced models
 pip install arch pyportfolioopt cvxpy
+```
 📈 Featured Models
 Trading Strategies
 Moving Average Crossover - Classic trend-following strategy
@@ -123,7 +67,7 @@ Fama-French Three Factor Model
 
 Almgren-Chriss Optimal Execution
 
-[Add your implemented papers here]
+[FKNCAPITAL]
 
 📊 Performance Metrics
 All strategies include comprehensive performance analysis:
