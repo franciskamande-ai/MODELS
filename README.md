@@ -67,7 +67,7 @@ Fama-French Three Factor Model
 
 Almgren-Chriss Optimal Execution
 
-[FKNCAPITAL]
+[https://FKNCAPITAL]
 
 📊 Performance Metrics
 All strategies include comprehensive performance analysis:
@@ -158,7 +158,7 @@ Email: [fkamande264@gmail.com]
 
 LinkedIn: [https://linkedin.com/franciskamande/]
 
-Twitter: [FKNCAPITAL]
+Twitter: [https://FKNCAPITAL]
 
 📄 License
 This project is licensed under the MIT License - see the LICENSE.md file for details.
