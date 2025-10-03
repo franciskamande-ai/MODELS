@@ -1,3 +1,8 @@
+#NOTE:
+#This will not be a perfect model it's way off the actual it's just for understanding the architecture of Neural Networks
+#We can start with this 2layer Neural Network....if it's your first time please view the one Layer neural networks on this repository
+
+
 class SimpleNN:
     def __init__(self):
         # Two-layer network
