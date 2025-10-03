@@ -1,0 +1,53 @@
+class SimpleNN:
+    def __init__(self):
+        # Two-layer network
+        self.w1 = np.random.normal(0, 0.1)  # Small random values
+        self.b1 = 0.1
+        self.w2 = np.random.normal(0, 0.1)
+        self.b2 = 0.1
+    
+    def relu(self, x):
+        return np.maximum(0, x)
+    
+    def forward(self, x):
+        self.hidden = self.w1 * x + self.b1
+        self.hidden_act = self.relu(self.hidden)
+        self.output = self.w2 * self.hidden_act + self.b2
+        return self.output
+    
+    def train(self, x, y, epochs=1000, lr=0.01):
+        for epoch in range(epochs):
+            # Forward pass
+            y_pred = self.forward(x)
+            loss = ((y_pred - y) ** 2).mean()
+            
+            # Backward pass
+            d_output = 2 * (y_pred - y)
+            dw2 = np.mean(d_output * self.hidden_act)
+            db2 = np.mean(d_output)
+            
+            d_hidden = d_output * self.w2
+            d_hidden[self.hidden <= 0] = 0  # ReLU gradient
+            dw1 = np.mean(d_hidden * x)
+            db1 = np.mean(d_hidden)
+            
+            # Update
+            self.w2 -= lr * dw2
+            self.b2 -= lr * db2
+            self.w1 -= lr * dw1
+            self.b1 -= lr * db1
+            
+            if epoch % 500 == 0:
+                print(f"Epoch {epoch}: loss = {loss:.4f}")
+
+# Train the neural network!
+nn = SimpleNN()
+nn.train(x, y)
+
+# Test it!
+print(f"\n Testing the neural network:")
+test_values = [2, 4, 6, 8, 10, 12]
+for val in test_values:
+    pred = nn.forward(val)
+    actual = val ** 2
+    print(f"x = {val:2d}: Predicted = {pred:6.1f}, Actual = {actual:3d}, Error = {abs(pred-actual):5.1f}")
