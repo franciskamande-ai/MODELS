@@ -1,0 +1,41 @@
+#The two magic equation's here are:
+
+#1.y = X*w + b (where y-output,X=input,w=weight,b=bias)
+#2.parameter = old_weight/bias-learning_rate*gradient(where parameter = updated weight/bias)
+
+#3.gradient of weight = np.mean(2*(error)*input)
+#4.gradient of bias = np.mean(2*(error))
+
+#Easy as that
+
+import numpy as np
+import pandas as pd
+
+
+def relu(x):
+  return np.maximum(0,x)
+
+x = np.array([1,2,3,4,5,6,7,8,9])
+y = np.array([1,4,9,16,25,36,49,64,81])
+w = np.random.normal(0,1)
+b = 0.1
+learning_rate = 0.01
+
+
+for epoch in range(1000):
+  y_prad = w*x+b
+  y_pred = relu(y_prad)
+  mse = ((y_pred-y)**2).mean()
+
+  gw = np.mean((2*(y_pred-y)*x))
+  gb = np.mean((2*(y_pred-y)))
+
+
+  w = w - learning_rate * gw
+  b = b - learning_rate * gb
+
+  print(f"Epoch{epoch+1} w = {w:.2f} b = {b:.2f} loss = {mse:.2f}")
+
+  
+  
+
