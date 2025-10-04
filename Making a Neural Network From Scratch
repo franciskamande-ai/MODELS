@@ -1,7 +1,10 @@
 #NOTE:
 #This will not be a perfect model it's way off the actual it's just for understanding the architecture of Neural Networks
 #We can start with this 2layer Neural Network....if it's your first time please view the one Layer neural networks on this repository
+#I used Linear data cause for non-linear data we'd need multiple layers 
 
+x = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+y = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 class SimpleNN:
     def __init__(self):
