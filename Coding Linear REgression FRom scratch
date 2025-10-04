@@ -1,0 +1,56 @@
+#The main concept here is OOP
+
+import numpy as np
+
+class LinearRegression:
+    def __init__(self):
+        self.slope = None
+        self.intercept = None
+        self.is_fitted = False
+    
+    def fit(self, X, y):
+        """
+        Fit linear model using the normal equation: y = mx + c
+        where m = slope, c = intercept
+        Formula: m = (mean(X)*mean(y) - mean(X*y)) / (mean(X)^2 - mean(X^2))
+                 c = mean(y) - m*mean(X)
+        """
+        # Calculate means
+        mean_x = np.mean(X)
+        mean_y = np.mean(y)
+        
+        # Calculate slope (m)
+        numerator = np.mean(X * y) - mean_x * mean_y
+        denominator = np.mean(X**2) - mean_x**2
+        self.slope = numerator / denominator
+        
+        # Calculate intercept (c)
+        self.intercept = mean_y - self.slope * mean_x
+        
+        self.is_fitted = True
+        print(f"Model fitted: y = {self.slope:.2f}x + {self.intercept:.2f}")
+    
+    def predict(self, X):
+        if not self.is_fitted:
+            print("Error: Model not fitted yet")
+            return None
+        
+        return self.slope * X + self.intercept
+
+# Perfect straight line data
+X = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+y = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+# Create and fit model
+model = LinearRegression()
+model.fit(X, y)
+
+# Make predictions
+test_X = np.array([10, 11, 12])
+predictions = model.predict(test_X)
+print(f"Predictions for {test_X}: {predictions}")
+
+# Calculate accuracy (for perfect line, should be 100%)
+train_predictions = model.predict(X)
+mse = np.mean((y - train_predictions) ** 2)
+print(f"Mean Squared Error: {mse}")
