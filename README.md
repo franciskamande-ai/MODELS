@@ -1,3 +1,4 @@
+
 # Financial Engineering Models Repository
 
 A comprehensive collection of quantitative finance models, trading strategies, and financial research implementations.
@@ -158,11 +159,10 @@ Email: [fkamande264@gmail.com]
 
 LinkedIn: [https://linkedin.com/franciskamande/]
 
-Twitter: [https://FKNCAPITAL/]
+Twitter: [https//FKNCAPITAL/]
 
 📄 License
 This project is licensed under the MIT License - see the LICENSE.md file for details.
 
 ⭐ If you find this repository useful, please give it a star!
-
 
