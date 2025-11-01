@@ -1,0 +1,139 @@
+import torch  
+import torch.nn as nn  
+import requests  
+import numpy as np  
+  
+# Download Shakespeare text  
+url = "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt"  
+response = requests.get(url)  
+text = response.text  
+## 2.Preparing Data  
+  
+print(f"Downloaded {len(text)} characters")  
+print("First 500 characters:")  
+print(text[:500])  
+  
+# Get all unique characters  
+chars = sorted(list(set(text)))  
+vocab_size = len(chars)  
+print(f"Vocabulary: {''.join(chars)}")  
+print(f"Vocabulary size: {vocab_size}")  
+  
+# Create character to index mappings  
+char_to_idx = {ch: i for i, ch in enumerate(chars)}  
+idx_to_char = {i: ch for i, ch in enumerate(chars)}  
+  
+print(f"Character 'A' -> {char_to_idx['A']}")  
+print(f"Index 0 -> '{idx_to_char[0]}'")  
+  
+## Create training Sequence  
+# Convert entire text to indices  
+data = torch.tensor([char_to_idx[ch] for ch in text], dtype=torch.long)  
+  
+# Split into training and validation  
+n = int(0.9 * len(data))  
+train_data = data[:n]  
+val_data = data[n:]  
+  
+print(f"Training characters: {len(train_data)}")  
+print(f"Validation characters: {len(val_data)}")  
+  
+## Define the RNN  
+  
+class CharRNN(nn.Module):  
+    def __init__(self, vocab_size, hidden_size, num_layers=1):  
+        super().__init__()  
+        self.hidden_size = hidden_size  
+        self.num_layers = num_layers  
+  
+        self.embedding = nn.Embedding(vocab_size, hidden_size)  
+        self.rnn = nn.RNN(hidden_size, hidden_size, num_layers, batch_first=True)  
+        self.fc = nn.Linear(hidden_size, vocab_size)  
+  
+    def forward(self, x, hidden=None):  
+        # x shape: (batch_size, seq_length)  
+        x = self.embedding(x)  # (batch_size, seq_length, hidden_size)  
+  
+        if hidden is None:  
+            hidden = torch.zeros(self.num_layers, x.size(0), self.hidden_size)  
+  
+        out, hidden = self.rnn(x, hidden)  # out: (batch_size, seq_length, hidden_size)  
+        out = self.fc(out)  # (batch_size, seq_length, vocab_size)  
+  
+        return out, hidden  
+  
+  
+# Initialize model  
+hidden_size = 128  
+model = CharRNN(vocab_size, hidden_size)  
+print(f"Model parameters: {sum(p.numel() for p in model.parameters())}")  
+  
+##Training Loop  
+def get_batch(split, batch_size=32, seq_length=100):  
+    data = train_data if split == 'train' else val_data  
+    ix = torch.randint(len(data) - seq_length, (batch_size,))  
+  
+    x = torch.stack([data[i:i + seq_length] for i in ix])  
+    y = torch.stack([data[i + 1:i + seq_length + 1] for i in ix])  
+  
+    return x, y  
+  
+  
+# Training setup  
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)  
+criterion = nn.CrossEntropyLoss()  
+  
+# Training loop  
+for epoch in range(5):  # Train for 5 epochs  
+    model.train()  
+    total_loss = 0  
+  
+    for step in range(100):  # 100 batches per epoch  
+        x, y = get_batch('train')  
+  
+        optimizer.zero_grad()  
+        output, hidden = model(x)  
+        loss = criterion(output.view(-1, vocab_size), y.view(-1))  
+        loss.backward()  
+        optimizer.step()  
+  
+        total_loss += loss.item()  
+  
+    print(f"Epoch {epoch + 1}, Loss: {total_loss / 100:.4f}")  
+  
+  
+## Generate Shakespear Like Text  
+  
+def generate_text(model, start_str, max_length=500, temperature=0.8):  
+    model.eval()  
+    chars = [ch for ch in start_str]  
+  
+    # Convert start string to tensor  
+    x = torch.tensor([[char_to_idx[ch] for ch in start_str]], dtype=torch.long)  
+    hidden = None  
+  
+    for _ in range(max_length):  
+        # Forward pass  
+        output, hidden = model(x, hidden)  
+  
+        # Get last prediction  
+        logits = output[0, -1] / temperature  
+        probs = torch.softmax(logits, dim=-1)  
+  
+        # Sample from distribution  
+        next_idx = torch.multinomial(probs, 1).item()  
+        next_char = idx_to_char[next_idx]  
+  
+        chars.append(next_char)  
+  
+        # Update input for next step  
+        x = torch.tensor([[next_idx]], dtype=torch.long)  
+  
+    return ''.join(chars)  
+  
+  
+# Generate some Shakespeare!  
+print("🎭 GENERATED TEXT:")  
+start_text = "ROMEO: "  
+generated = generate_text(model, start_text, max_length=300)  
+print(generated)
